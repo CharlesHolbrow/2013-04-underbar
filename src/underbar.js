@@ -5,17 +5,38 @@ var _ = {};
   // Return an array of the last n elements of an array. If n is undefined,
   // return just the last element.
   _.last = function(array, n) {
+    var array = Array.prototype.slice.call(array);
+    if (n === undefined) 
+      return array[array.length -1];
+    if (n > array.length)
+      return array;
+    var firstIndex = array.length - n;
+    return array.slice(firstIndex, array.length);
   };
 
   // Like last, but for the first elements
   _.first = function(array, n) {
-    // TIP: you can often re-use similar functions in clever ways, like so:
-    return _.last(array.reverse(), n);
+    var array = Array.prototype.slice.call(array);
+    if (n === undefined) // return a value from the array, not a slice
+      return array[0];
+    var rev = array.reverse();
+    return _.last(rev, n).reverse();
   };
 
 
   // Call iterator(value, key, collection) for each element of collection
   _.each = function(obj, iterator) {
+    if (typeof obj === 'object') {
+      for (var key in obj) {
+        iterator(obj[key], key, obj);
+      }
+    }
+
+    if (typeof obj == 'array') {
+      for (var i = 0; i < obj.length; i++) {
+        iterator(obj[i], i, obj)
+      }
+    }
   };
 
   /*

@@ -24,7 +24,6 @@ describe("last", function() {
 
 });
 
-/*
 
 describe("first", function() {
   it("should be able to pull out the first element of an array", function() {
@@ -90,6 +89,7 @@ describe("indexOf", function() {
   });
 });
 
+/* 
 describe("filter", function() {
   it("should return all even numbers in an array", function() {
     var isEven = function(num) {
